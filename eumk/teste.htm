@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test — Go Development</title>
+    <meta name="description" content="Final self-check test for the course “Go Development”">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .test-intro {
+            background: #fff0f7;
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            padding: 16px 22px;
+            margin: 18px 0 26px;
+        }
+        .test-question {
+            background: #fff;
+            border: 2px solid var(--border);
+            border-radius: 18px;
+            padding: 18px 22px;
+            margin: 14px 0;
+            transition: border-color 0.25s;
+        }
+        .test-question.is-correct { border-color: #35b06f; background: #f2fbf6; }
+        .test-question.is-wrong   { border-color: #e0557a; background: #fff2f6; }
+        .test-q-title { font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; }
+        .test-option { display: block; margin: 6px 0; }
+        .test-option label {
+            display: flex; align-items: flex-start; gap: 10px;
+            padding: 8px 14px; border: 2px solid var(--border);
+            border-radius: 999px; cursor: pointer;
+            transition: all 0.2s; font-size: 0.95em;
+        }
+        .test-option label:hover { border-color: var(--accent); background: #fff5fa; }
+        .test-option input { margin-top: 4px; accent-color: var(--primary); }
+        .test-option label.picked { border-color: var(--primary); background: #fff0f7; }
+        .test-explain {
+            display: none; margin-top: 10px; padding: 10px 14px;
+            border-radius: 12px; font-size: 0.88em;
+            background: #fff5fa; border-left: 5px solid var(--hot-pink);
+            color: var(--text);
+        }
+        .test-question.is-correct .test-explain,
+        .test-question.is-wrong .test-explain { display: block; }
+        .test-result {
+            display: none; text-align: center;
+            background: linear-gradient(140deg, #fff0f7, #ffffff 70%);
+            border: 2px solid var(--accent); border-radius: 20px;
+            padding: 26px 22px; margin: 26px 0;
+        }
+        .test-result .score {
+            font-family: 'Lobster', 'Nunito', cursive;
+            font-size: 2.2em; color: var(--primary);
+        }
+        .test-result .grade {
+            display: inline-block; margin-top: 6px;
+            background: linear-gradient(120deg, #ff8fc8, #e0218a);
+            color: #fff; font-weight: 800; padding: 6px 22px;
+            border-radius: 999px; letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(224,33,138,0.35);
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <div class="brand">
+            <span class="name">Test for the course “Go Development”</span>
+            <span class="role">Electronic educational and methodological complex</span>
+        </div>
+        <div class="lang-switch">
+            <a href="test.htm">RU</a>
+            <a href="teste.htm" class="active">EN</a>
+        </div>
+    </div>
+</header>
+
+<nav class="main-nav">
+    <div class="nav-inner">
+        <a href="../indexe.htm">Biography</a>
+        <a href="../diss/indexe.htm">Abstract</a>
+        <a href="../library/indexe.htm">Library</a>
+        <a href="../links/indexe.htm">Links</a>
+        <a href="../links/zvite.htm">Search report</a>
+        <a href="../ind/indexe.htm">Individual section</a>
+        <a href="indexe.htm">EUMC</a>
+    </div>
+</nav>
+
+<main class="main-container">
+
+    <h1>Test for the course “Go Development”</h1>
+
+    <div class="test-intro">
+        <p><strong>10 tasks</strong> covering all sections of the course. Each task is worth
+        1 point; the point is awarded only for choosing the single correct option.
+        The result and the grade appear immediately after pressing “Check” —
+        together with an explanation for each question.</p>
+        <p><strong>Scale:</strong> 9–10 — “excellent”, 7–8 — “good”,
+        5–6 — “satisfactory”, less than 5 — “unsatisfactory”.</p>
+    </div>
+
+    <div id="quiz"></div>
+
+    <div class="lib-actions" style="margin: 22px 0;">
+        <a href="#" id="btn-check" class="btn-open-pdf">✓ Check</a>
+        <a href="#" id="btn-reset" class="btn-ipynb" style="display:none;">↻ Try again</a>
+    </div>
+
+    <div class="test-result" id="test-result">
+        <div class="score" id="res-score"></div>
+        <p id="res-text" style="margin: 4px 0;"></p>
+        <div class="grade" id="res-grade"></div>
+    </div>
+
+</main>
+
+<footer class="site-footer">
+    <p>Personal website of a master's student at Kuban State University</p>
+    <p>Krasnodar, 2026–2027 academic year</p>
+</footer>
+
+<script>
+const QUESTIONS = [
+    {
+        q: "1. Which command creates a new Go module?",
+        options: ["go build", "go mod init", "go run", "gofmt"],
+        correct: 1,
+        exp: "go mod init <name> creates the go.mod file — the module manifest that records the project dependencies."
+    },
+    {
+        q: "2. What is a slice in Go?",
+        options: [
+            "A one-dimensional array of fixed length",
+            "A dynamic view of an array (pointer, len, cap)",
+            "A hash table",
+            "An interface type"
+        ],
+        correct: 1,
+        exp: "A slice is a structure of a pointer to the underlying array, a length (len) and a capacity (cap); append adds elements, increasing the capacity when necessary."
+    },
+    {
+        q: "3. What does accessing a missing map key return?",
+        options: ["An error", "A panic", "The zero value of the type", "Always a nil pointer"],
+        correct: 2,
+        exp: "m[k] for a missing key returns the zero value of the value type. The form val, ok := m[k] distinguishes it from an actually stored zero."
+    },
+    {
+        q: "4. How are errors handled idiomatically in Go?",
+        options: ["With try/catch", "With if err != nil", "Always with panic", "There are no errors in Go"],
+        correct: 1,
+        exp: "Errors are ordinary values of type error. The standard idiom: val, err := f(); if err != nil { ... } — checked immediately after the call."
+    },
+    {
+        q: "5. Which keyword starts a goroutine?",
+        options: ["async", "thread", "go", "run"],
+        correct: 2,
+        exp: "Any function call preceded by the keyword go (e.g., go worker()) runs in a new goroutine — a lightweight thread managed by the Go scheduler."
+    },
+    {
+        q: "6. What is sync.WaitGroup for?",
+        options: [
+            "Protecting a map",
+            "Waiting for a group of goroutines to finish",
+            "Timeouts",
+            "Logging"
+        ],
+        correct: 1,
+        exp: "WaitGroup holds a counter: wg.Add(1) before starting a goroutine, defer wg.Done() inside it, and wg.Wait() to wait for all of them."
+    },
+    {
+        q: "7. Which flag enables the data race detector?",
+        options: ["-v", "-cover", "-race", "-mod"],
+        correct: 2,
+        exp: "go test -race (or go run -race) enables the built-in race detector that finds unsynchronized concurrent data access."
+    },
+    {
+        q: "8. Which standard library package is used for an HTTP server?",
+        options: ["http/server", "net/http", "web/go", "net/server"],
+        correct: 1,
+        exp: "net/http contains both client and server: http.ListenAndServe, ServeMux for routing, and the http.ResponseWriter / *http.Request handler types."
+    },
+    {
+        q: "9. Which command runs tests with coverage measurement?",
+        options: ["go cover", "go test -cover", "go run tests", "go check"],
+        correct: 1,
+        exp: "go test -cover prints the percentage of code covered by tests; full line-by-line statistics — go test -coverprofile=cover.out."
+    },
+    {
+        q: "10. What does httptest.NewRecorder() do?",
+        options: [
+            "Starts a real server",
+            "Creates a ResponseRecorder for checking a handler",
+            "Logs HTTP requests",
+            "Profiles code"
+        ],
+        correct: 1,
+        exp: "NewRecorder returns an http.ResponseWriter implementation that records the response in memory — the handler can be invoked directly and its status code and body checked without a network."
+    }
+];
+
+const quiz = document.getElementById('quiz');
+const btnCheck = document.getElementById('btn-check');
+const btnReset = document.getElementById('btn-reset');
+const resultBox = document.getElementById('test-result');
+
+function render() {
+    quiz.innerHTML = QUESTIONS.map((item, qi) => `
+        <div class="test-question" data-q="${qi}">
+            <div class="test-q-title">${item.q}</div>
+            ${item.options.map((opt, oi) => `
+                <div class="test-option">
+                    <label>
+                        <input type="radio" name="q${qi}" value="${oi}">
+                        <span>${opt}</span>
+                    </label>
+                </div>`).join('')}
+            <div class="test-explain">${item.exp}</div>
+        </div>`).join('');
+}
+
+quiz.addEventListener('change', (e) => {
+    if (e.target.type === 'radio') {
+        const labels = e.target.closest('.test-question').querySelectorAll('label');
+        labels.forEach(l => l.classList.remove('picked'));
+        e.target.closest('label').classList.add('picked');
+    }
+});
+
+function gradeFor(score) {
+    if (score >= 9) return ['“5” (excellent)', 'Excellent result! The course has been mastered at a high level.'];
+    if (score >= 7) return ['“4” (good)', 'Good result! Review the questions you got wrong.'];
+    if (score >= 5) return ['“3” (satisfactory)', 'Satisfactory. Reviewing the material is recommended.'];
+    return ['“2” (unsatisfactory)', 'It is recommended to study the lectures again and retake the test.'];
+}
+
+btnCheck.addEventListener('click', (e) => {
+    e.preventDefault();
+    let score = 0, answered = 0;
+    QUESTIONS.forEach((item, qi) => {
+        const card = quiz.querySelector(`[data-q="${qi}"]`);
+        const chosen = card.querySelector('input[type="radio"]:checked');
+        if (chosen) answered++;
+        card.classList.remove('is-correct', 'is-wrong');
+        if (chosen && Number(chosen.value) === item.correct) {
+            score++;
+            card.classList.add('is-correct');
+        } else {
+            card.classList.add('is-wrong');
+        }
+    });
+    if (answered < QUESTIONS.length) {
+        alert('Not all questions are answered! Choose an option in every task.');
+        return;
+    }
+    const [grade, text] = gradeFor(score);
+    document.getElementById('res-score').textContent = `${score} out of ${QUESTIONS.length}`;
+    document.getElementById('res-text').textContent = text;
+    document.getElementById('res-grade').textContent = grade;
+    resultBox.style.display = 'block';
+    btnCheck.style.display = 'none';
+    btnReset.style.display = 'inline-flex';
+    resultBox.scrollIntoView({ behavior: 'smooth' });
+});
+
+btnReset.addEventListener('click', (e) => {
+    e.preventDefault();
+    render();
+    resultBox.style.display = 'none';
+    btnCheck.style.display = 'inline-flex';
+    btnReset.style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+render();
+</script>
+
+</body>
+</html>

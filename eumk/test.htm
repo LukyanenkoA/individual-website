@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест — Golang-разработка</title>
+    <meta name="description" content="Итоговый тест для самопроверки по дисциплине «Golang-разработка»">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .test-intro {
+            background: #fff0f7;
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            padding: 16px 22px;
+            margin: 18px 0 26px;
+        }
+        .test-question {
+            background: #fff;
+            border: 2px solid var(--border);
+            border-radius: 18px;
+            padding: 18px 22px;
+            margin: 14px 0;
+            transition: border-color 0.25s;
+        }
+        .test-question.is-correct { border-color: #35b06f; background: #f2fbf6; }
+        .test-question.is-wrong   { border-color: #e0557a; background: #fff2f6; }
+        .test-q-title { font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; }
+        .test-option { display: block; margin: 6px 0; }
+        .test-option label {
+            display: flex; align-items: flex-start; gap: 10px;
+            padding: 8px 14px; border: 2px solid var(--border);
+            border-radius: 999px; cursor: pointer;
+            transition: all 0.2s; font-size: 0.95em;
+        }
+        .test-option label:hover { border-color: var(--accent); background: #fff5fa; }
+        .test-option input { margin-top: 4px; accent-color: var(--primary); }
+        .test-option label.picked { border-color: var(--primary); background: #fff0f7; }
+        .test-explain {
+            display: none; margin-top: 10px; padding: 10px 14px;
+            border-radius: 12px; font-size: 0.88em;
+            background: #fff5fa; border-left: 5px solid var(--hot-pink);
+            color: var(--text);
+        }
+        .test-question.is-correct .test-explain,
+        .test-question.is-wrong .test-explain { display: block; }
+        .test-result {
+            display: none; text-align: center;
+            background: linear-gradient(140deg, #fff0f7, #ffffff 70%);
+            border: 2px solid var(--accent); border-radius: 20px;
+            padding: 26px 22px; margin: 26px 0;
+        }
+        .test-result .score {
+            font-family: 'Lobster', 'Nunito', cursive;
+            font-size: 2.2em; color: var(--primary);
+        }
+        .test-result .grade {
+            display: inline-block; margin-top: 6px;
+            background: linear-gradient(120deg, #ff8fc8, #e0218a);
+            color: #fff; font-weight: 800; padding: 6px 22px;
+            border-radius: 999px; letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(224,33,138,0.35);
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <div class="brand">
+            <span class="name">Тест по дисциплине «Golang-разработка»</span>
+            <span class="role">Электронный учебно-методический комплекс</span>
+        </div>
+        <div class="lang-switch">
+            <a href="test.htm" class="active">RU</a>
+            <a href="teste.htm">EN</a>
+        </div>
+    </div>
+</header>
+
+<nav class="main-nav">
+    <div class="nav-inner">
+        <a href="../index.html">Биография</a>
+        <a href="../diss/index.htm">Реферат</a>
+        <a href="../library/index.htm">Библиотека</a>
+        <a href="../links/index.htm">Ссылки</a>
+        <a href="../links/zvit.htm">Отчет о поиске</a>
+        <a href="../ind/index.htm">Индивидуальный раздел</a>
+        <a href="index.htm">ЭУМК</a>
+    </div>
+</nav>
+
+<main class="main-container">
+
+    <h1>Тест по курсу «Golang-разработка»</h1>
+
+    <div class="test-intro">
+        <p><strong>10 заданий</strong> по всем разделам курса. Каждое задание оценивается
+        в 1 балл; балл начисляется только при выборе единственного верного варианта.
+        Результат и оценка появляются сразу после нажатия кнопки «Проверить» —
+        вместе с пояснением к каждому вопросу.</p>
+        <p><strong>Шкала:</strong> 9–10 — «отлично», 7–8 — «хорошо»,
+        5–6 — «удовлетворительно», менее 5 — «неудовлетворительно».</p>
+    </div>
+
+    <div id="quiz"></div>
+
+    <div class="lib-actions" style="margin: 22px 0;">
+        <a href="#" id="btn-check" class="btn-open-pdf">✓ Проверить</a>
+        <a href="#" id="btn-reset" class="btn-ipynb" style="display:none;">↻ Пройти ещё раз</a>
+    </div>
+
+    <div class="test-result" id="test-result">
+        <div class="score" id="res-score"></div>
+        <p id="res-text" style="margin: 4px 0;"></p>
+        <div class="grade" id="res-grade"></div>
+    </div>
+
+</main>
+
+<footer class="site-footer">
+    <p>Персональный сайт магистранта Кубанского государственного университета</p>
+    <p>Краснодар, 2026–2027 учебный год</p>
+</footer>
+
+<script>
+const QUESTIONS = [
+    {
+        q: "1. Какая команда создаёт новый модуль Go?",
+        options: ["go build", "go mod init", "go run", "gofmt"],
+        correct: 1,
+        exp: "go mod init <имя> создаёт файл go.mod — манифест модуля, в котором фиксируются зависимости проекта."
+    },
+    {
+        q: "2. Что такое слайс в Go?",
+        options: [
+            "Одномерный массив фиксированной длины",
+            "Динамическое представление массива (указатель, len, cap)",
+            "Хеш-таблица",
+            "Тип интерфейса"
+        ],
+        correct: 1,
+        exp: "Слайс — структура из указателя на нижележащий массив, длины (len) и ёмкости (cap); функция append добавляет элементы, при необходимости увеличивая ёмкость."
+    },
+    {
+        q: "3. Что возвращает обращение к отсутствующему ключу мапы?",
+        options: ["Ошибку", "Панику", "Нулевое значение типа", "nil-указатель всегда"],
+        correct: 2,
+        exp: "m[k] для отсутствующего ключа возвращает нулевое значение типа значения. Форма val, ok := m[k] позволяет отличить его от реально записанного нуля."
+    },
+    {
+        q: "4. Как идиоматически обрабатываются ошибки в Go?",
+        options: ["Через try/catch", "Через if err != nil", "Через panic всегда", "Ошибок в Go нет"],
+        correct: 1,
+        exp: "Ошибки — обычные значения типа error. Стандартная идиома: val, err := f(); if err != nil { ... } — с проверкой сразу после вызова."
+    },
+    {
+        q: "5. Какое ключевое слово запускает горутину?",
+        options: ["async", "thread", "go", "run"],
+        correct: 2,
+        exp: "Любой вызов функции с ключевым словом go (например, go worker()) выполняется в новой горутине — легковесном потоке, управляемом планировщиком Go."
+    },
+    {
+        q: "6. Для чего нужен sync.WaitGroup?",
+        options: [
+            "Для защиты мапы",
+            "Для ожидания завершения группы горутин",
+            "Для таймаутов",
+            "Для логирования"
+        ],
+        correct: 1,
+        exp: "WaitGroup хранит счётчик: wg.Add(1) перед запуском горутины, defer wg.Done() внутри неё и wg.Wait() — для ожидания завершения всех."
+    },
+    {
+        q: "7. Какой флаг включает детектор гонок данных?",
+        options: ["-v", "-cover", "-race", "-mod"],
+        correct: 2,
+        exp: "go test -race (или go run -race) включает встроенный детектор гонок, который выявляет одновременный доступ к данным без синхронизации."
+    },
+    {
+        q: "8. Какой пакет стандартной библиотеки используется для HTTP-сервера?",
+        options: ["http/server", "net/http", "web/go", "net/server"],
+        correct: 1,
+        exp: "net/http содержит и клиент, и сервер: http.ListenAndServe, ServeMux для маршрутизации и типы http.ResponseWriter / *http.Request для обработчиков."
+    },
+    {
+        q: "9. Какая команда запускает тесты с измерением покрытия?",
+        options: ["go cover", "go test -cover", "go run tests", "go check"],
+        correct: 1,
+        exp: "go test -cover выводит процент покрытия кода тестами; полная статистика построчно — go test -coverprofile=cover.out."
+    },
+    {
+        q: "10. Что делает httptest.NewRecorder()?",
+        options: [
+            "Запускает реальный сервер",
+            "Создаёт ResponseRecorder для проверки обработчика",
+            "Логирует HTTP-запросы",
+            "Профилирует код"
+        ],
+        correct: 1,
+        exp: "NewRecorder возвращает реализацию http.ResponseWriter, записывающую ответ в память, — обработчик можно вызвать напрямую и проверить код статуса и тело без сети."
+    }
+];
+
+const quiz = document.getElementById('quiz');
+const btnCheck = document.getElementById('btn-check');
+const btnReset = document.getElementById('btn-reset');
+const resultBox = document.getElementById('test-result');
+
+function render() {
+    quiz.innerHTML = QUESTIONS.map((item, qi) => `
+        <div class="test-question" data-q="${qi}">
+            <div class="test-q-title">${item.q}</div>
+            ${item.options.map((opt, oi) => `
+                <div class="test-option">
+                    <label>
+                        <input type="radio" name="q${qi}" value="${oi}">
+                        <span>${opt}</span>
+                    </label>
+                </div>`).join('')}
+            <div class="test-explain">${item.exp}</div>
+        </div>`).join('');
+}
+
+quiz.addEventListener('change', (e) => {
+    if (e.target.type === 'radio') {
+        const labels = e.target.closest('.test-question').querySelectorAll('label');
+        labels.forEach(l => l.classList.remove('picked'));
+        e.target.closest('label').classList.add('picked');
+    }
+});
+
+function gradeFor(score) {
+    if (score >= 9) return ['«5» (отлично)', 'Отличный результат! Курс освоен на высоком уровне.'];
+    if (score >= 7) return ['«4» (хорошо)', 'Хороший результат! Обратите внимание на вопросы с ошибками.'];
+    if (score >= 5) return ['«3» (удовлетворительно)', 'Удовлетворительно. Рекомендуется повторить материал.'];
+    return ['«2» (неудовлетворительно)', 'Рекомендуется заново изучить лекции и пройти тест ещё раз.'];
+}
+
+btnCheck.addEventListener('click', (e) => {
+    e.preventDefault();
+    let score = 0, answered = 0;
+    QUESTIONS.forEach((item, qi) => {
+        const card = quiz.querySelector(`[data-q="${qi}"]`);
+        const chosen = card.querySelector('input[type="radio"]:checked');
+        if (chosen) answered++;
+        card.classList.remove('is-correct', 'is-wrong');
+        if (chosen && Number(chosen.value) === item.correct) {
+            score++;
+            card.classList.add('is-correct');
+        } else {
+            card.classList.add('is-wrong');
+        }
+    });
+    if (answered < QUESTIONS.length) {
+        alert('Отвечены не все вопросы! Отметьте вариант в каждом задании.');
+        return;
+    }
+    const [grade, text] = gradeFor(score);
+    document.getElementById('res-score').textContent = `${score} из ${QUESTIONS.length}`;
+    document.getElementById('res-text').textContent = text;
+    document.getElementById('res-grade').textContent = grade;
+    resultBox.style.display = 'block';
+    btnCheck.style.display = 'none';
+    btnReset.style.display = 'inline-flex';
+    resultBox.scrollIntoView({ behavior: 'smooth' });
+});
+
+btnReset.addEventListener('click', (e) => {
+    e.preventDefault();
+    render();
+    resultBox.style.display = 'none';
+    btnCheck.style.display = 'inline-flex';
+    btnReset.style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+render();
+</script>
+
+</body>
+</html>

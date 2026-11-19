@@ -1,0 +1,907 @@
+/* =========================================================
+   style.css — BARBIE STYLE ✦
+   Розовый гламур: градиенты, скругления, блёстки
+   Шрифты: Lobster (заголовки, с кириллицей) + Nunito (текст)
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap');
+
+:root {
+    --primary: #e0218a;         /* барби-розовый */
+    --primary-dark: #b0136e;    /* малиновый */
+    --hot-pink: #ff4fa3;        /* яркий фуксия-розовый */
+    --accent: #ff8fc8;          /* пузырьковый розовый */
+    --accent-hover: #ff6fb5;
+    --lilac: #a855f7;           /* сиреневый акцент */
+    --bg: #ffe9f3;              /* нежно-розовый фон */
+    --card-bg: #ffffff;
+    --text: #43122f;            /* тёмная слива вместо чёрного */
+    --muted: #a06287;           /* пыльная роза */
+    --border: #ffd3e6;
+    --shadow-sm: 0 2px 8px rgba(224, 33, 138, 0.10);
+    --shadow-md: 0 8px 26px rgba(224, 33, 138, 0.16);
+    --shadow-glow: 0 0 0 3px rgba(255, 143, 200, 0.35);
+    --radius: 22px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+::selection {
+    background: #ff9ec9;
+    color: #ffffff;
+}
+
+/* Розовый скроллбар */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: #fff0f7; }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #ff8fc8, #e0218a);
+    border-radius: 10px;
+    border: 3px solid #fff0f7;
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #ff6fb5, #b0136e); }
+
+body {
+    font-family: 'Nunito', 'Segoe UI', -apple-system, sans-serif;
+    background-color: var(--bg);
+    /* горошек — фирменный барби-принт */
+    background-image:
+        radial-gradient(rgba(255, 143, 200, 0.35) 2.5px, transparent 3px),
+        radial-gradient(rgba(255, 143, 200, 0.35) 2.5px, transparent 3px);
+    background-size: 34px 34px;
+    background-position: 0 0, 17px 17px;
+    background-attachment: fixed;
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* =========================================================
+   ШАПКА — сочный розовый градиент с блёстками
+   ========================================================= */
+.site-header {
+    background:
+        radial-gradient(circle at 12% 25%, rgba(255,255,255,0.30) 0, rgba(255,255,255,0) 26%),
+        radial-gradient(circle at 82% 70%, rgba(255,255,255,0.22) 0, rgba(255,255,255,0) 30%),
+        radial-gradient(circle at 45% 90%, rgba(255,255,255,0.18) 0, rgba(255,255,255,0) 24%),
+        linear-gradient(120deg, #ff6eb3 0%, #e0218a 55%, #c2186d 100%);
+    color: #fff;
+    padding: 18px 0;
+    border-bottom: 4px solid #ffcdf0;
+    box-shadow: 0 4px 18px rgba(224, 33, 138, 0.35);
+}
+
+.site-header .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.site-header .brand {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+}
+
+.site-header .brand .name {
+    font-family: 'Lobster', 'Nunito', cursive;
+    font-size: 1.35em;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 10px rgba(122, 8, 74, 0.45);
+}
+
+.site-header .brand .name::before { content: "✦ "; color: #ffd9ec; }
+.site-header .brand .name::after  { content: " ✦"; color: #ffd9ec; }
+
+.site-header .brand .role {
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.site-header .lang-switch {
+    display: flex;
+    gap: 8px;
+}
+
+.site-header .lang-switch a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8em;
+    font-weight: 800;
+    padding: 6px 16px;
+    border: 2px solid rgba(255, 255, 255, 0.65);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    transition: all 0.25s;
+    letter-spacing: 1px;
+}
+
+.site-header .lang-switch a:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #fff;
+    transform: translateY(-1px);
+}
+
+.site-header .lang-switch a.active {
+    background: #ffffff;
+    color: var(--primary);
+    border-color: #ffffff;
+    box-shadow: 0 3px 10px rgba(122, 8, 74, 0.35);
+}
+
+/* =========================================================
+   НАВИГАЦИЯ — розовые «пилюли»
+   ========================================================= */
+.main-nav {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 2px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-nav .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.main-nav a {
+    display: inline-block;
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-size: 0.88em;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.main-nav a:hover {
+    color: var(--primary);
+    background: #fff0f7;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.main-nav a.active {
+    color: #fff;
+    background: linear-gradient(120deg, #ff6eb3, #e0218a);
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(224, 33, 138, 0.35);
+}
+
+/* =========================================================
+   ОСНОВНОЙ КОНТЕНТ — белая карточка со свечением
+   ========================================================= */
+.main-container {
+    background: var(--card-bg);
+    max-width: 1000px;
+    margin: 36px auto;
+    padding: 44px 52px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    border: 2px solid var(--border);
+    position: relative;
+}
+
+/* розовая «лента» поверх карточки */
+.main-container::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 24px; right: 24px;
+    height: 6px;
+    border-radius: 0 0 999px 999px;
+    background: linear-gradient(90deg, #ff8fc8, #e0218a, #ff8fc8);
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        margin: 16px;
+        padding: 26px 20px;
+    }
+}
+
+/* =========================================================
+   ТИПОГРАФИКА
+   ========================================================= */
+.main-container h1 {
+    font-family: 'Lobster', 'Nunito', cursive;
+    font-size: 2em;
+    font-weight: 400;
+    color: var(--primary);
+    padding-bottom: 14px;
+    border-bottom: 3px dashed var(--accent);
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.main-container h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.25em;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-top: 34px;
+    margin-bottom: 14px;
+    padding: 6px 14px;
+    background: linear-gradient(90deg, #fff0f7, transparent 75%);
+    border-left: 5px solid var(--hot-pink);
+    border-radius: 0 14px 14px 0;
+    line-height: 1.35;
+}
+
+.main-container h2::before { content: "✦ "; color: var(--hot-pink); }
+
+.main-container h3 {
+    font-size: 1.08em;
+    font-weight: 800;
+    color: var(--primary);
+    margin-top: 24px;
+    margin-bottom: 10px;
+}
+
+.main-container h4 {
+    font-size: 1.05em;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-top: 26px;
+    margin-bottom: 14px;
+}
+
+.main-container p { margin-bottom: 12px; }
+
+.main-container strong { color: var(--primary-dark); }
+
+/* Ссылки в контенте */
+.main-container a {
+    color: var(--primary);
+    text-decoration: none;
+    border-bottom: 2px dotted var(--accent);
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.main-container a:hover {
+    color: var(--primary-dark);
+    border-bottom-color: var(--primary-dark);
+    background: #fff0f7;
+    border-radius: 4px;
+}
+
+/* =========================================================
+   ФОТО — как гламурный полароид
+   ========================================================= */
+.photo-main {
+    float: left;
+    margin: 0 28px 18px 0;
+    width: 180px;
+    height: 236px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 10px 26px rgba(224, 33, 138, 0.30);
+    border: 5px solid #fff;
+    outline: 2px solid var(--accent);
+    transform: rotate(-2deg);
+    transition: transform 0.3s;
+}
+
+.photo-main:hover {
+    transform: rotate(0deg) scale(1.04);
+    box-shadow: 0 14px 34px rgba(224, 33, 138, 0.40);
+}
+
+.photo-big {
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    margin: 14px 0;
+}
+
+@media (max-width: 600px) {
+    .photo-main { float: none; display: block; margin: 0 auto 18px; }
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* =========================================================
+   ТАБЛИЦЫ
+   ========================================================= */
+.main-container table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 18px 0;
+    font-size: 0.9em;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 2px solid var(--border);
+}
+
+.main-container th {
+    background: linear-gradient(120deg, #ff6eb3, #e0218a);
+    color: #fff;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.92em;
+    letter-spacing: 0.4px;
+}
+
+.main-container td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    background: #fff;
+}
+
+.main-container tbody tr:nth-child(even) td { background: #fff5fa; }
+
+.main-container tbody tr:hover td { background: #ffe9f4; }
+
+/* =========================================================
+   КАРТОЧКИ (библиотека)
+   ========================================================= */
+.lib-item {
+    background: linear-gradient(160deg, #fff8fc, #ffffff 60%);
+    border: 2px solid var(--border);
+    padding: 18px 24px;
+    margin: 14px 0;
+    border-radius: 18px;
+    transition: all 0.25s;
+}
+
+.lib-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.lib-item h4 {
+    color: var(--primary-dark);
+    margin: 0 0 6px 0;
+    font-size: 1.02em;
+    font-weight: 800;
+}
+
+.lib-item .meta {
+    color: var(--muted);
+    font-size: 0.83em;
+    font-style: italic;
+    margin-bottom: 8px;
+}
+
+.lib-item p {
+    margin-bottom: 8px;
+    font-size: 0.94em;
+}
+
+/* =========================================================
+   СПИСОК ССЫЛОК
+   ========================================================= */
+.links-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+}
+
+.links-list li {
+    padding: 14px 16px;
+    margin: 10px 0;
+    border-radius: 14px;
+    background: #fff8fc;
+    border: 1px solid var(--border);
+    transition: all 0.22s;
+}
+
+.links-list li:hover {
+    background: #fff0f7;
+    border-color: var(--accent);
+    transform: translateX(4px);
+}
+
+.links-list .link-title {
+    font-weight: 700;
+    font-size: 0.98em;
+}
+
+.links-list .link-title a {
+    color: var(--primary-dark);
+    border-bottom: none;
+}
+
+.links-list .link-title a:hover {
+    color: var(--primary);
+}
+
+.links-list .link-desc {
+    display: block;
+    color: var(--muted);
+    font-size: 0.87em;
+    margin-top: 4px;
+    line-height: 1.55;
+}
+
+/* =========================================================
+   ЗАМЕТКА
+   ========================================================= */
+.notice {
+    background: #fff0f7;
+    border: 2px solid var(--accent);
+    border-left: 6px solid var(--hot-pink);
+    padding: 16px 22px;
+    margin: 22px 0;
+    border-radius: 0 16px 16px 0;
+    font-size: 0.92em;
+}
+
+.notice strong { color: var(--primary-dark); }
+
+/* =========================================================
+   ФУТЕР
+   ========================================================= */
+.site-footer {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.22) 0, rgba(255,255,255,0) 30%),
+        linear-gradient(120deg, #c2186d, #e0218a 60%, #ff6eb3);
+    color: #ffd9ec;
+    text-align: center;
+    padding: 26px 20px;
+    font-size: 0.88em;
+    font-weight: 600;
+    margin-top: 50px;
+    border-top: 4px solid #ffcdf0;
+}
+
+.site-footer p { margin: 4px 0; }
+
+/* =========================================================
+   СПИСКИ
+   ========================================================= */
+.main-container ul, .main-container ol {
+    padding-left: 24px;
+    margin-bottom: 14px;
+}
+
+.main-container ul li, .main-container ol li {
+    margin-bottom: 7px;
+}
+
+.main-container ul li::marker { color: var(--hot-pink); }
+.main-container ol li::marker { color: var(--primary); font-weight: 800; }
+
+/* =========================================================
+   Таблица отчета о поиске
+   ========================================================= */
+.search-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 20px 0;
+    font-size: 0.9em;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(224, 33, 138, 0.12);
+    border: 2px solid var(--border);
+}
+
+.search-table th {
+    background: linear-gradient(120deg, #ff6eb3, #e0218a);
+    color: #fff;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.88em;
+    letter-spacing: 0.3px;
+    border: 1px solid var(--primary-dark);
+}
+
+.search-table td {
+    padding: 9px 14px;
+    border: 1px solid var(--border);
+    vertical-align: middle;
+    background: #fff;
+}
+
+/* Строки-группы (начало нового запроса) */
+.search-table tr.group-row td {
+    border-top: 2px solid var(--hot-pink);
+}
+
+/* Ячейка с фразой */
+.search-table .phrase-cell {
+    background: #fff0f7;
+    font-weight: 600;
+    color: var(--primary-dark);
+    vertical-align: top;
+    padding-top: 12px;
+}
+
+/* Числа */
+.search-table .num {
+    font-family: 'Consolas', 'Menlo', monospace;
+    font-size: 0.95em;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+/* Приглушённый текст (скрыто/не найдено) */
+.search-table .num.muted {
+    color: var(--muted);
+    font-style: italic;
+    font-family: inherit;
+    font-size: 0.88em;
+}
+
+/* Hover */
+.search-table tbody tr:hover td:not(.phrase-cell) {
+    background: #ffe9f4;
+}
+
+/* Адаптив */
+@media (max-width: 640px) {
+    .search-table { font-size: 0.8em; }
+    .search-table th,
+    .search-table td { padding: 7px 8px; }
+    .search-table .phrase-cell { font-size: 0.92em; }
+}
+
+/* Плавная прокрутка для table-responsive */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* =========================================================
+   Ссылки на источники в тексте
+   ========================================================= */
+.main-container sup,
+.main-container a[href^="#ref"] {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.9em;
+    padding: 0 1px;
+}
+
+/* Ссылки-сноски в тексте автореферата */
+.main-container a[href^="#ref"] {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+    padding: 0 2px;
+    border-bottom: 1px dotted var(--primary);
+    transition: all 0.2s;
+}
+
+.main-container a[href^="#ref"]:hover {
+    color: var(--hot-pink);
+    border-bottom-color: var(--hot-pink);
+    background: #fff0f7;
+    border-radius: 4px;
+}
+
+/* =========================================================
+   Подсветка источника в списке литературы
+   при переходе по ссылке [N] из текста
+   ========================================================= */
+.main-container ol li[id^="ref"] {
+    padding: 6px 10px;
+    margin-left: -10px;
+    border-radius: 10px;
+    scroll-margin-top: 80px;
+    transition: background 0.4s, box-shadow 0.4s;
+}
+
+/* Момент, когда браузер переходит к якорю — подсветка */
+.main-container ol li[id^="ref"]:target {
+    background: #ffdcec;
+    box-shadow: 0 0 0 2px var(--hot-pink), 0 4px 14px rgba(224, 33, 138, 0.30);
+    animation: flash 2.5s ease-out;
+}
+
+/* Плавное «затухание» подсветки */
+@keyframes flash {
+    0%   { background: #ffdcec; box-shadow: 0 0 0 2px var(--hot-pink), 0 4px 14px rgba(224, 33, 138, 0.30); }
+    70%  { background: #ffdcec; box-shadow: 0 0 0 2px var(--hot-pink), 0 4px 14px rgba(224, 33, 138, 0.30); }
+    100% { background: transparent; box-shadow: none; }
+}
+
+html { scroll-behavior: smooth; }
+
+/* =========================================================
+   Блок с кнопками действий в карточке
+   ========================================================= */
+.lib-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+/* Кнопка «Лекция (PDF)» — розовая пилюля */
+.btn-open-pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(120deg, #ff8fc8, #e0218a);
+    color: #fff !important;
+    text-decoration: none !important;
+    padding: 9px 22px;
+    border-radius: 999px;
+    font-size: 0.88em;
+    font-weight: 800;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 12px rgba(224, 33, 138, 0.30);
+    transition: all 0.25s;
+}
+
+.btn-open-pdf:hover {
+    background: linear-gradient(120deg, #ff6fb5, #b0136e);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(224, 33, 138, 0.45);
+    border-radius: 999px;
+}
+
+/* Кнопка «Ноутбук (.ipynb)» — сиреневая пилюля */
+.btn-ipynb {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #7c3aed !important;
+    text-decoration: none !important;
+    padding: 9px 22px;
+    border-radius: 999px;
+    font-size: 0.88em;
+    font-weight: 800;
+    border: 2px solid var(--lilac);
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.btn-ipynb:hover {
+    background: var(--lilac);
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(168, 85, 247, 0.35);
+}
+
+.btn-ipynb:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* =========================================================
+   Завершающие абзацы в разделе волонтёрства
+   ========================================================= */
+.volunteer-note {
+    background: #fff0f7;
+    border: 1px solid var(--accent);
+    border-left: 6px solid var(--hot-pink);
+    padding: 16px 22px;
+    margin: 18px 0;
+    border-radius: 0 16px 16px 0;
+    font-style: italic;
+    color: var(--text);
+    font-size: 0.97em;
+}
+
+.volunteer-note strong {
+    color: var(--primary-dark);
+    font-style: normal;
+}
+
+/* =========================================================
+   Блок «Главное достижение»
+   ========================================================= */
+.achievement-highlight {
+    background:
+        radial-gradient(circle at 88% 12%, rgba(255, 143, 200, 0.25) 0, rgba(255, 143, 200, 0) 40%),
+        linear-gradient(140deg, #fff0f7, #ffffff 70%);
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    padding: 26px 30px;
+    margin: 22px 0;
+    box-shadow: 0 6px 20px rgba(224, 33, 138, 0.14);
+}
+
+.achievement-highlight .achievement-year {
+    display: inline-block;
+    background: linear-gradient(120deg, #ff8fc8, #e0218a);
+    color: #fff;
+    padding: 4px 16px;
+    border-radius: 999px;
+    font-size: 0.82em;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin: 0 0 12px 0;
+    box-shadow: 0 3px 10px rgba(224, 33, 138, 0.35);
+}
+
+.achievement-highlight .achievement-title {
+    color: var(--primary-dark);
+    font-size: 1.18em;
+    font-weight: 800;
+    margin: 0 0 10px 0;
+    line-height: 1.35;
+}
+
+.achievement-highlight .achievement-text {
+    color: var(--text);
+    font-size: 0.97em;
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   Галерея фотографий (кликабельные превью)
+   ========================================================= */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 26px;
+    margin: 25px 0;
+}
+
+.photo-item {
+    display: block;
+    text-decoration: none !important;
+    text-align: center;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(224, 33, 138, 0.14);
+    border: 2px solid var(--border);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: zoom-in;
+    border-bottom: none !important;
+}
+
+.photo-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(224, 33, 138, 0.26);
+    border-color: var(--accent);
+}
+
+.photo-item .photo-big {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    aspect-ratio: 4 / 3;
+    transition: transform 0.3s;
+}
+
+.photo-item:hover .photo-big {
+    transform: scale(1.04);
+}
+
+.photo-caption {
+    font-size: 0.88em;
+    color: var(--muted);
+    font-style: italic;
+    margin: 0;
+    padding: 12px 16px;
+    background: #fff5fa;
+    border-top: 1px dashed var(--border);
+}
+
+/* =========================================================
+   ЛАЙТБОКС — полноэкранный просмотр
+   ========================================================= */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(74, 7, 48, 0.93);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+/* Показывается, когда URL содержит #photo-N */
+.lightbox:target {
+    display: flex;
+    animation: lightbox-fade 0.25s ease-out;
+}
+
+@keyframes lightbox-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.lightbox img {
+    max-width: 95%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 16px;
+    border: 4px solid #fff;
+    box-shadow: 0 0 60px rgba(255, 143, 200, 0.45);
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+/* Кнопка закрытия */
+.lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    width: 46px;
+    height: 46px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+    color: #fff !important;
+    font-size: 1.3em;
+    font-weight: 400;
+    text-decoration: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.lightbox-close:hover {
+    background: var(--hot-pink);
+    border-color: var(--hot-pink);
+    transform: rotate(90deg);
+    box-shadow: 0 0 20px rgba(255, 79, 163, 0.6);
+}
+
+/* На мобильных — меньше отступы */
+@media (max-width: 640px) {
+    .photo-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .lightbox {
+        padding: 20px;
+    }
+    .lightbox-close {
+        top: 12px;
+        right: 12px;
+        width: 40px;
+        height: 40px;
+    }
+}

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЭУМК — Golang-разработка</title>
+    <meta name="description" content="Электронный учебно-методический комплекс по дисциплине «Golang-разработка»">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <div class="brand">
+            <span class="name">Электронный учебно-методический комплекс</span>
+            <span class="role">Дисциплина «Golang-разработка»</span>
+        </div>
+        <div class="lang-switch">
+            <a href="index.htm" class="active">RU</a>
+            <a href="indexe.htm">EN</a>
+        </div>
+    </div>
+</header>
+
+<nav class="main-nav">
+    <div class="nav-inner">
+        <a href="../index.html">Биография</a>
+        <a href="../diss/index.htm">Реферат</a>
+        <a href="../library/index.htm">Библиотека</a>
+        <a href="../links/index.htm">Ссылки</a>
+        <a href="../links/zvit.htm">Отчет о поиске</a>
+        <a href="../ind/index.htm">Индивидуальный раздел</a>
+        <a href="index.htm" class="active">ЭУМК</a>
+    </div>
+</nav>
+
+<main class="main-container">
+
+    <!-- ======================= ЗАГОЛОВОК ======================= -->
+    <h1>Golang-разработка</h1>
+
+    <p>
+        Электронный учебно-методический комплекс по дисциплине
+        <strong>Б1.О.15 «Golang-разработка»</strong> для направления
+        подготовки <strong>01.03.02 «Прикладная математика и информатика»</strong>.
+        Комплекс содержит аннотацию курса, рабочую учебную программу,
+        теоретический материал (4 лекции) и практические работы (4 лабораторные).
+    </p>
+
+    <!-- ======================= О ДИСЦИПЛИНЕ ======================= -->
+    <h2>О дисциплине</h2>
+
+    <p>
+        <strong>Цель:</strong> формирование теоретических знаний и практических навыков
+        разработки программного обеспечения на языке Go, включая работу с составными
+        типами данных, интерфейсами, средствами параллельного программирования
+        и созданием веб-сервисов.
+    </p>
+
+    <p><strong>Основные задачи:</strong></p>
+    <ul>
+        <li>освоить инструментарий экосистемы Go (go mod, go test, gofmt, go vet);</li>
+        <li>изучить синтаксис и систему типов языка, принципы организации пакетов;</li>
+        <li>овладеть работой со слайсами, мапами, структурами и интерфейсами;</li>
+        <li>освоить параллельное программирование: горутины, каналы, sync, context;</li>
+        <li>научиться разрабатывать REST API на основе net/http и тестировать приложения.</li>
+    </ul>
+
+    <p>
+        <strong>Объём:</strong> 2 зачётные единицы (72 часа).<br>
+    </p>
+
+    <!-- ======================= ДОКУМЕНТЫ ======================= -->
+    <h2>Документы курса</h2>
+
+    <div class="lib-item">
+        <h4>Аннотация дисциплины</h4>
+        <p class="meta">Общая характеристика курса, цели, задачи, место в образовательной программе</p>
+        <a href="annotaciya.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Скачать PDF
+        </a>
+    </div>
+
+    <div class="lib-item">
+        <h4>Рабочая учебная программа (РУП)</h4>
+        <p class="meta">Результаты обучения, трудоёмкость, структура курса, формы контроля</p>
+        <a href="rup.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Скачать PDF
+        </a>
+    </div>
+
+    <!-- ======================= ЛЕКЦИИ ======================= -->
+    <h2>Лекции</h2>
+
+    <div class="lib-item">
+        <h4>Лекция 1. Введение в язык Go</h4>
+        <p class="meta">Раздел 1 · история и философия языка · инструментарий (go mod, gofmt, go vet) · базовый синтаксис</p>
+        <p>
+            История и область применения Go. Установка инструментария, модули и команды
+            go run / go build / go test. Переменные, константы, базовые типы.
+            Управляющие конструкции if, for, switch. Функции и множественные возвращаемые
+            значения. Пакеты и видимость идентификаторов.
+        </p>
+        <a href="lekciya-1-go-osnovy.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Лекция (PDF)
+        </a>
+    </div>
+
+    <div class="lib-item">
+        <h4>Лекция 2. Составные типы данных и интерфейсы</h4>
+        <p class="meta">Раздел 1 · слайсы, мапы, структуры · методы · интерфейсы · обработка ошибок</p>
+        <p>
+            Массивы и слайсы (len/cap, append). Мапы и их особенности. Структуры и методы,
+            встраивание. Неявная реализация интерфейсов, type switch. Обработка ошибок:
+            error, errors.Is/As, %w. defer, panic, recover.
+        </p>
+        <a href="lekciya-2-tipu-dannuh.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Лекция (PDF)
+        </a>
+    </div>
+
+    <div class="lib-item">
+        <h4>Лекция 3. Параллельное программирование</h4>
+        <p class="meta">Раздел 2 · горутины · каналы · select · sync · context</p>
+        <p>
+            Горутины и планировщик GMP. Каналы: буферизация, направление, закрытие, range.
+            Оператор select. Пакет sync: WaitGroup, Mutex, Once. context: отмена и таймауты.
+            Паттерны worker pool и pipeline. Гонки данных и флаг -race.
+        </p>
+        <a href="lekciya-3-concurrency.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Лекция (PDF)
+        </a>
+    </div>
+
+    <div class="lib-item">
+        <h4>Лекция 4. Веб-разработка и тестирование в Go</h4>
+        <p class="meta">Раздел 3 · net/http · REST API · JSON · database/sql · go test</p>
+        <p>
+            HTTP-сервер на net/http, ServeMux, обработчики и middleware. REST API и
+            сериализация JSON. Работа с БД через database/sql. Тестирование: табличные
+            тесты, t.Run, покрытие, пакет httptest.
+        </p>
+        <a href="lekciya-4-web-testirovanie.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Лекция (PDF)
+        </a>
+    </div>
+
+    <!-- ======================= ПРАКТИЧЕСКИЕ РАБОТЫ ======================= -->
+    <h2>Практические (лабораторные) работы</h2>
+
+    <div class="lib-item">
+        <h4>Лабораторная работа №1. Основы Go: программы, функции, пакеты</h4>
+        <p class="meta">Раздел 1 · go mod · функции · пакеты · go test</p>
+        <p>
+            <strong>Цель:</strong> освоить инструментарий Go и базовый синтаксис.
+        </p>
+        <p>
+            <strong>Задания:</strong> CLI-утилита «конвертер» (температура, валюта);
+            вынесение логики в пакет convert; возврат (результат, error);
+            табличные тесты; gofmt, go vet, покрытие.
+        </p>
+        <a href="lab-1.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Скачать работу
+        </a>
+    </div>
+
+    <div class="lib-item">
+        <h4>Лабораторная работа №2. Слайсы, мапы, структуры и интерфейсы</h4>
+        <p class="meta">Раздел 1 · каталог товаров · Store · интерфейс Repository</p>
+        <p>
+            <strong>Цель:</strong> освоить составные типы данных и интерфейсы.
+        </p>
+        <p>
+            <strong>Задания:</strong> структура Product и хранилище на map;
+            FilterByCategory и SortByPrice; интерфейс Repository; ошибки ErrNotFound
+            и errors.Is; табличные тесты с граничными случаями.
+        </p>
+        <a href="lab-2.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Скачать работу
+        </a>
+    </div>
+
+    <div class="lib-item">
+        <h4>Лабораторная работа №3. Горутины и каналы</h4>
+        <p class="meta">Раздел 2 · worker pool · WaitGroup · context.WithTimeout</p>
+        <p>
+            <strong>Цель:</strong> освоить параллельное программирование.
+        </p>
+        <p>
+            <strong>Задания:</strong> worker pool с каналами jobs/results; синхронизация
+            через WaitGroup; таймаут через context; замеры времени для N = 1, 4, 8;
+            проверка под детектором гонок go test -race.
+        </p>
+        <a href="lab-3.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Скачать работу
+        </a>
+    </div>
+
+    <div class="lib-item">
+        <h4>Лабораторная работа №4. REST API на Go</h4>
+        <p class="meta">Раздел 3 · net/http · JSON · middleware · httptest</p>
+        <p>
+            <strong>Цель:</strong> разработать и протестировать REST API каталога товаров.
+        </p>
+        <p>
+            <strong>Задания:</strong> CRUD-маршруты на ServeMux; статус-коды 201/200/400/404/405;
+            middleware логирования; хранилище с sync.RWMutex; тесты через httptest
+            с покрытием не менее 70%.
+        </p>
+        <a href="lab-4.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Скачать работу
+        </a>
+    </div>
+
+    <h2>Тестирование по курсу</h2>
+
+    <p>
+        Для проверки знаний по дисциплине «Golang-разработка» предлагается пройти
+        итоговый тест. Тест включает 10 заданий по всем разделам курса. Результат
+        и оценка отображаются сразу после завершения — вместе с пояснениями
+        к каждому вопросу.
+    </p>
+
+    <h3>Инструкция к тестированию</h3>
+    <p>
+        Перед началом теста убедитесь в удобном рабочем месте. Каждое задание
+        оценивается в 1 балл; балл начисляется только при выборе единственного верного
+        варианта. Шкала оценивания: 9–10 — «отлично», 7–8 — «хорошо»,
+        5–6 — «удовлетворительно», менее 5 — «неудовлетворительно». Результат
+        и оценка появляются автоматически после нажатия кнопки «Проверить».
+    </p>
+
+    <div class="lib-actions">
+        <a href="test.htm" class="btn-open-pdf">
+            <span class="icon">📝</span> Пройти тест
+        </a>
+    </div>
+
+    <!-- ======================= ИСТОЧНИКИ ======================= -->
+    <h2>Рекомендуемые источники</h2>
+    <ol>
+        <li>Официальная документация Go. — URL: https://go.dev/doc/</li>
+        <li>Effective Go. — URL: https://go.dev/doc/effective_go</li>
+        <li>The Go Blog. — URL: https://go.dev/blog/</li>
+        <li>pkg.go.dev — документация стандартной библиотеки и пакетов. — URL: https://pkg.go.dev/</li>
+        <li>Go Code Review Comments (стиль кода). — URL: https://go.dev/wiki/CodeReviewComments</li>
+        <li>Go by Example — практические примеры. — URL: https://gobyexample.com/</li>
+        <li>Learn Go with Tests — изучение Go через тесты. — URL: https://quii.gitbook.io/learn-go-with-tests/</li>
+        <li>Метанит. Руководство по языку Go (на русском). — URL: https://metanit.com/go/</li>
+        <li>Хабр — раздел «Go». — URL: https://habr.com/ru/hubs/go/</li>
+    </ol>
+
+    <!-- ======================= СВЕДЕНИЯ ОБ АВТОРЕ ======================= -->
+    <h2>Сведения об авторе</h2>
+    <p><strong>Автор ЭУМК:</strong> Лукьяненко Алла Андреевна</p>
+    <p><strong>Статус:</strong> магистрант факультета компьютерных технологий и прикладной математики КубГУ</p>
+    <p><strong>Год разработки:</strong> 2026</p>
+
+</main>
+
+<footer class="site-footer">
+    <p>Персональный сайт магистранта Кубанского государственного университета</p>
+    <p>Краснодар, 2026–2027 учебный год</p>
+</footer>
+
+</body>
+</html>

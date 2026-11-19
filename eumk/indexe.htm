@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUMC — Go Development</title>
+    <meta name="description" content="Electronic educational and methodological complex for the course “Go Development”">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <div class="brand">
+            <span class="name">Electronic educational and methodological complex</span>
+            <span class="role">Course “Go Development”</span>
+        </div>
+        <div class="lang-switch">
+            <a href="index.htm">RU</a>
+            <a href="indexe.htm" class="active">EN</a>
+        </div>
+    </div>
+</header>
+
+<nav class="main-nav">
+    <div class="nav-inner">
+        <a href="../indexe.htm">Biography</a>
+        <a href="../diss/indexe.htm">Abstract</a>
+        <a href="../library/indexe.htm">Library</a>
+        <a href="../links/indexe.htm">Links</a>
+        <a href="../links/zvite.htm">Search report</a>
+        <a href="../ind/indexe.htm">Individual section</a>
+        <a href="indexe.htm" class="active">EUMC</a>
+    </div>
+</nav>
+
+<main class="main-container">
+
+    <!-- ======================= HEADING ======================= -->
+    <h1>Go Development</h1>
+
+    <p>
+        Electronic educational and methodological complex for the course
+        <strong>B1.O.15 “Go Development”</strong> for the study program
+        <strong>01.03.02 “Applied Mathematics and Computer Science”</strong>.
+        The complex includes a course annotation, the working curriculum,
+        theoretical material (4 lectures) and practical work (4 labs).
+    </p>
+
+    <!-- ======================= ABOUT THE COURSE ======================= -->
+    <h2>About the course</h2>
+
+    <p>
+        <strong>Objective:</strong> building theoretical knowledge and practical skills in
+        software development with the Go language, including composite data types,
+        interfaces, concurrency tools and web service development.
+    </p>
+
+    <p><strong>Main tasks:</strong></p>
+    <ul>
+        <li>master the Go toolchain (go mod, go test, gofmt, go vet);</li>
+        <li>study the language syntax and type system, package organization;</li>
+        <li>master slices, maps, structs and interfaces;</li>
+        <li>master concurrent programming: goroutines, channels, sync, context;</li>
+        <li>learn to build REST APIs with net/http and test applications.</li>
+    </ul>
+
+    <p>
+        <strong>Workload:</strong> 2 credit units (72 hours).<br>
+    </p>
+
+    <!-- ======================= DOCUMENTS ======================= -->
+    <h2>Course documents</h2>
+
+    <div class="lib-item">
+        <h4>Course annotation</h4>
+        <p class="meta">General description of the course, objectives, tasks, place in the curriculum</p>
+        <a href="annotaciya.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Download PDF
+        </a>
+    </div>
+
+    <div class="lib-item">
+        <h4>Working curriculum (RUP)</h4>
+        <p class="meta">Learning outcomes, workload, course structure, forms of assessment</p>
+        <a href="rup.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Download PDF
+        </a>
+    </div>
+
+    <!-- ======================= LECTURES ======================= -->
+    <h2>Lectures</h2>
+
+    <div class="lib-item">
+        <h4>Lecture 1. Introduction to Go</h4>
+        <p class="meta">Section 1 · history and philosophy · toolchain (go mod, gofmt, go vet) · basic syntax</p>
+        <p>
+            History and application areas of Go. Installing the toolchain, modules and the
+            go run / go build / go test commands. Variables, constants, basic types.
+            Control structures if, for, switch. Functions and multiple return values.
+            Packages and identifier visibility.
+        </p>
+        <a href="lekciya-1-go-osnovy.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Lecture (PDF)
+        </a>
+    </div>
+
+    <div class="lib-item">
+        <h4>Lecture 2. Composite data types and interfaces</h4>
+        <p class="meta">Section 1 · slices, maps, structs · methods · interfaces · error handling</p>
+        <p>
+            Arrays and slices (len/cap, append). Maps and their specifics. Structs and
+            methods, embedding. Implicit interface implementation, type switch. Error
+            handling: error, errors.Is/As, %w. defer, panic, recover.
+        </p>
+        <a href="lekciya-2-tipu-dannuh.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Lecture (PDF)
+        </a>
+    </div>
+
+    <div class="lib-item">
+        <h4>Lecture 3. Concurrent programming</h4>
+        <p class="meta">Section 2 · goroutines · channels · select · sync · context</p>
+        <p>
+            Goroutines and the GMP scheduler. Channels: buffering, direction, closing,
+            range. The select operator. The sync package: WaitGroup, Mutex, Once.
+            context: cancellation and timeouts. Worker pool and pipeline patterns.
+            Data races and the -race flag.
+        </p>
+        <a href="lekciya-3-concurrency.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Lecture (PDF)
+        </a>
+    </div>
+
+    <div class="lib-item">
+        <h4>Lecture 4. Web development and testing in Go</h4>
+        <p class="meta">Section 3 · net/http · REST API · JSON · database/sql · go test</p>
+        <p>
+            HTTP server with net/http, ServeMux, handlers and middleware. REST API and
+            JSON serialization. Working with databases via database/sql. Testing:
+            table-driven tests, t.Run, coverage, the httptest package.
+        </p>
+        <a href="lekciya-4-web-testirovanie.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Lecture (PDF)
+        </a>
+    </div>
+
+    <!-- ======================= PRACTICAL WORK ======================= -->
+    <h2>Practical (laboratory) work</h2>
+
+    <div class="lib-item">
+        <h4>Lab 1. Go basics: programs, functions, packages</h4>
+        <p class="meta">Section 1 · go mod · functions · packages · go test</p>
+        <p>
+            <strong>Objective:</strong> master the Go toolchain and basic syntax.
+        </p>
+        <p>
+            <strong>Tasks:</strong> a CLI converter utility (temperature, currency);
+            moving the logic into a convert package; returning (result, error);
+            table-driven tests; gofmt, go vet, coverage.
+        </p>
+        <a href="lab-1.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Download the work
+        </a>
+    </div>
+
+    <div class="lib-item">
+        <h4>Lab 2. Slices, maps, structs and interfaces</h4>
+        <p class="meta">Section 1 · product catalogue · Store · Repository interface</p>
+        <p>
+            <strong>Objective:</strong> master composite data types and interfaces.
+        </p>
+        <p>
+            <strong>Tasks:</strong> the Product struct and a map-based store;
+            FilterByCategory and SortByPrice; the Repository interface; ErrNotFound
+            errors and errors.Is; table-driven tests with edge cases.
+        </p>
+        <a href="lab-2.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Download the work
+        </a>
+    </div>
+
+    <div class="lib-item">
+        <h4>Lab 3. Goroutines and channels</h4>
+        <p class="meta">Section 2 · worker pool · WaitGroup · context.WithTimeout</p>
+        <p>
+            <strong>Objective:</strong> master concurrent programming.
+        </p>
+        <p>
+            <strong>Tasks:</strong> a worker pool with jobs/results channels;
+            synchronization with WaitGroup; a context-based timeout; timing
+            measurements for N = 1, 4, 8; verification with go test -race.
+        </p>
+        <a href="lab-3.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Download the work
+        </a>
+    </div>
+
+    <div class="lib-item">
+        <h4>Lab 4. REST API in Go</h4>
+        <p class="meta">Section 3 · net/http · JSON · middleware · httptest</p>
+        <p>
+            <strong>Objective:</strong> develop and test a REST API for a product catalogue.
+        </p>
+        <p>
+            <strong>Tasks:</strong> CRUD routes on ServeMux; status codes
+            201/200/400/404/405; logging middleware; a store with sync.RWMutex;
+            httptest tests with at least 70% coverage.
+        </p>
+        <a href="lab-4.pdf" target="_blank" rel="noopener" class="btn-open-pdf">
+            <span class="icon">📄</span> Download the work
+        </a>
+    </div>
+
+    <h2>Course testing</h2>
+
+    <p>
+        To test knowledge of the course “Go Development”, students are offered a final
+        test. The test includes 10 tasks covering all sections of the course. The result
+        and the grade are displayed immediately after completion — together with
+        explanations for each question.
+    </p>
+
+    <h3>Testing instructions</h3>
+    <p>
+        Before starting the test, make sure you have a comfortable workplace. Each task
+        is worth 1 point; the point is awarded only for choosing the single correct
+        option. Grading scale: 9–10 — “excellent”, 7–8 — “good”, 5–6 — “satisfactory”,
+        less than 5 — “unsatisfactory”. The result and the grade appear automatically
+        after pressing the “Check” button.
+    </p>
+
+    <div class="lib-actions">
+        <a href="teste.htm" class="btn-open-pdf">
+            <span class="icon">📝</span> Take the test
+        </a>
+    </div>
+
+    <!-- ======================= SOURCES ======================= -->
+    <h2>Recommended sources</h2>
+    <ol>
+        <li>Official Go documentation. — URL: https://go.dev/doc/</li>
+        <li>Effective Go. — URL: https://go.dev/doc/effective_go</li>
+        <li>The Go Blog. — URL: https://go.dev/blog/</li>
+        <li>pkg.go.dev — standard library and package documentation. — URL: https://pkg.go.dev/</li>
+        <li>Go Code Review Comments (code style). — URL: https://go.dev/wiki/CodeReviewComments</li>
+        <li>Go by Example — practical examples. — URL: https://gobyexample.com/</li>
+        <li>Learn Go with Tests. — URL: https://quii.gitbook.io/learn-go-with-tests/</li>
+        <li>Metanit. Go tutorial (in Russian). — URL: https://metanit.com/go/</li>
+        <li>Habr — the “Go” hub. — URL: https://habr.com/ru/hubs/go/</li>
+    </ol>
+
+    <!-- ======================= ABOUT THE AUTHOR ======================= -->
+    <h2>About the author</h2>
+    <p><strong>EUMC author:</strong> Lukyanenko Alla Andreevna</p>
+    <p><strong>Status:</strong> master's student at the Faculty of Computer Technology and Applied Mathematics, KubSU</p>
+    <p><strong>Year of development:</strong> 2026</p>
+
+</main>
+
+<footer class="site-footer">
+    <p>Personal website of a master's student at Kuban State University</p>
+    <p>Krasnodar, 2026–2027 academic year</p>
+</footer>
+
+</body>
+</html>

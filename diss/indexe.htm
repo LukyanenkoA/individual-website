@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abstract — Alla Andreevna Lukyanenko</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <div class="brand">
+            <span class="name">Lukyanenko Alla Andreevna</span>
+            <span class="role">Abstract of the master's thesis</span>
+        </div>
+        <div class="lang-switch">
+            <a href="index.htm">RU</a>
+            <a href="indexe.htm" class="active">EN</a>
+        </div>
+    </div>
+</header>
+
+<nav class="main-nav">
+    <div class="nav-inner">
+        <a href="../indexe.htm">Biography</a>
+        <a href="indexe.htm" class="active">Abstract</a>
+        <a href="../library/indexe.htm">Library</a>
+        <a href="../links/indexe.htm">Links</a>
+        <a href="../links/zvite.htm">Search report</a>
+        <a href="../ind/indexe.htm">Individual section</a>
+        <a href="../eumk/indexe.htm">EUMC</a>
+    </div>
+</nav>
+
+<main class="main-container">
+
+    <h1>Hybrid method for smart contract security auditing based on static analysis and fuzzing with detection completeness evaluation</h1>
+
+    <p><strong>Author:</strong> Lukyanenko Alla Andreevna</p>
+    <p><strong>Supervisor:</strong> Kharchenko Anna Vladimirovna, Candidate of Pedagogical Sciences, Associate Professor</p>
+
+    <h2>Annotation</h2>
+    <p>
+        The work contains 55 pages, 18 figures, 15 sources.
+    </p>
+    <p>
+        <strong>Keywords:</strong> SMART CONTRACTS, BLOCKCHAIN, DIGITAL ASSETS,
+        TOKENIZATION, WEB DEVELOPMENT, HTML, CSS, JAVASCRIPT, REACT, SOLIDITY,
+        HARDHAT, ETHERS.JS, OPENZEPPELIN, METAMASK.
+    </p>
+    <p>
+        The aim of the work is to develop a smart contract for digital asset management
+        and a web application for interacting with this contract, ultimately creating
+        a full-fledged decentralized system (dApp) that allows users to connect a wallet,
+        view their balance and transfer tokens, and administrators to issue new tokens
+        and suspend contract operations. The main functionality is ERC-20 token management
+        with extended security mechanisms <a href="#ref9">[9]</a>, <a href="#ref11">[11]</a>.
+    </p>
+    <p>
+        In preparation for the work, the basic concepts of blockchain technologies and smart
+        contracts, the principles of developing decentralized applications, the fundamentals
+        of web frameworks for building user interfaces <a href="#ref4">[4]</a>,
+        <a href="#ref5">[5]</a>, the design of cryptographic wallets (MetaMask), and smart
+        contract development environments <a href="#ref10">[10]</a>, <a href="#ref12">[12]</a>
+        were studied.
+    </p>
+
+    <h2>Introduction</h2>
+    <p>
+        Smart contracts and blockchain technology represent one of the most promising areas
+        in digital finance and decentralized applications. The work is aimed at studying
+        the design and testing of smart contracts for digital asset management in a
+        decentralized environment.
+    </p>
+    <p>
+        The relevance of the work is explained by the fact that more and more companies and
+        individuals are switching to digital financial assets <a href="#ref8">[8]</a>, while
+        there are few high-quality, secure and verified solutions for their issuance and
+        management: smart contract development has its own specifics, and it is often
+        difficult to compose a correct contract that supports all the necessary security
+        and management functions.
+    </p>
+    <p><strong>Object of research:</strong> a smart contract in a blockchain network.</p>
+    <p><strong>Subject of research:</strong> an ERC-20 standard smart contract for digital
+        asset management.</p>
+    <p>To achieve the aim, the following tasks were defined:</p>
+    <ul>
+        <li>study the structure and operating principles of smart contracts in general;</li>
+        <li>consider the specifics of the ERC-20 standard and extended security mechanisms;</li>
+        <li>develop a smart contract with issuance, transfer, burning and pausing functions;</li>
+        <li>implement a web application with a convenient interface for interacting with the contract;</li>
+        <li>add the ability to connect a wallet (MetaMask);</li>
+        <li>implement balance viewing and token transfers between addresses;</li>
+        <li>add an admin panel for issuing new tokens and managing the contract state;</li>
+        <li>build a complete working decentralized application based on the above.</li>
+    </ul>
+    <p>
+        Research methods: analysis of scientific and technical literature and blockchain
+        platform documentation, generalization of the collected data, practical programming
+        in Solidity and JavaScript using the Hardhat and React frameworks.
+    </p>
+
+    <h2>1. Theoretical foundations</h2>
+    <p>
+        The blockchain technology (a distributed database on many nodes of a peer-to-peer
+        network with consensus), the concept and properties of smart contracts (autonomy,
+        determinism, immutability, transparency), their life cycle and the gas mechanism
+        are considered. Token standards ERC-20, ERC-721 and ERC-1155 are analyzed
+        <a href="#ref11">[11]</a>; for digital financial assets the ERC-20 standard is chosen
+        as the best fit for fungible claims. A comparative review of EVM-compatible
+        deployment platforms (Ethereum, Binance Smart Chain, Polygon) is carried out;
+        Ethereum is selected as the target platform.
+    </p>
+
+    <h2>2. Design and implementation of the smart contract</h2>
+    <p>
+        The choice of tools is substantiated: the Solidity 0.8.19 language
+        <a href="#ref10">[10]</a>, the Hardhat development environment <a href="#ref12">[12]</a>,
+        and the OpenZeppelin Contracts library <a href="#ref9">[9]</a>. The CustomToken smart
+        contract with a modular architecture based on multiple inheritance was developed:
+        ERC20 (basic standard logic), ERC20Burnable (token burning), Pausable (emergency
+        suspension of operations) and AccessControl (role-based model with DEFAULT_ADMIN_ROLE,
+        MINTER_ROLE and PAUSER_ROLE). The key security element is the override of the
+        <em>_update</em> function with the <em>whenNotPaused</em> modifier, which guarantees
+        the suspension of all balance-changing operations.
+    </p>
+    <p>
+        Unit testing of the contract was carried out using Mocha, Chai and the
+        hardhat-chai-matchers plugin: deployment, transfers, approve/transferFrom, mint,
+        burn, pause/unpause and the role model were verified. All 12 tests passed
+        successfully.
+    </p>
+
+    <h2>3. Development of the decentralized application</h2>
+    <p>
+        A client-side single-page application (dApp) was designed and implemented in React
+        <a href="#ref5">[5]</a>, <a href="#ref6">[6]</a> with the ethers.js library and the
+        MetaMask wallet. The interface includes a navigation bar with wallet connection,
+        balance and token information cards, a token transfer form with validation, and a
+        notification system for transaction statuses. The admin panel is displayed dynamically
+        depending on the roles of the connected user and provides issuance of new tokens
+        (mint) and suspension/resumption of the contract (pause/unpause).
+    </p>
+    <p>
+        Testing in the local Hardhat network confirmed the full operability of the solution:
+        compilation of 14 Solidity files, contract deployment, execution of transfers,
+        issuance and suspension operations with automatic balance updates.
+    </p>
+
+    <h2>Conclusion</h2>
+    <p>
+        The main token standards were considered, a comparative analysis of blockchain
+        platforms was carried out, and the CustomToken ERC-20 smart contract with extended
+        security mechanisms (AccessControl, Pausable, Burnable) and a React client web
+        application were designed and developed. The finished software product was
+        successfully tested in the local Hardhat environment. The results obtained form the
+        basis for developing a hybrid method for smart contract security auditing that
+        combines static analysis and fuzzing with an evaluation of detection completeness.
+    </p>
+    <p>
+        The project code is published on GitHub:
+        <a href="https://github.com/LukyanenkoA/custom-token-project" target="_blank" rel="noopener">github.com/LukyanenkoA/custom-token-project</a>
+        <a href="#ref13">[13]</a>.
+    </p>
+
+    <h2>References</h2>
+    <ol>
+        <li id="ref1">Duckett, J. HTML and CSS: Design and Build Websites. — Moscow: Eksmo, 2020. — 756 p. (In Russian)</li>
+        <li id="ref2">McFarland, D. CSS: The Missing Manual. — St. Petersburg: Piter, 2019. — 720 p. (In Russian)</li>
+        <li id="ref3">Frain, B. Responsive Web Design with HTML5 and CSS3. — St. Petersburg: Piter, 2022. — 336 p. (In Russian)</li>
+        <li id="ref4">Flanagan, D. JavaScript: The Definitive Guide. — Moscow: Williams, 2021. — 331 p. (In Russian)</li>
+        <li id="ref5">Brown, E. Learning JavaScript. A guide to building modern websites. — Moscow: Alfa-kniga, 2020. — 628 p. (In Russian)</li>
+        <li id="ref6">Seevais, L.L. JavaScript from Zero to Pro / L.L. Seevais, M. Putten, R. Percival. — St. Petersburg: Piter, 2023. — 480 p. (In Russian)</li>
+        <li id="ref7">Simpson, K. You Don't Know JS. — St. Petersburg: Piter, 2022. — 192 p. (In Russian)</li>
+        <li id="ref8">Russian Federation. Laws. On digital financial assets, digital currency... : Federal Law No. 259-FZ // ConsultantPlus legal reference system. (In Russian)</li>
+        <li id="ref9">OpenZeppelin Contracts Documentation: official website. — URL: https://docs.openzeppelin.com/contracts/ (accessed: 13.04.2026).</li>
+        <li id="ref10">Solidity Documentation: official website. — URL: https://www.soliditylang.org/ (accessed: 23.04.2026).</li>
+        <li id="ref11">Ethereum Improvement Proposals. EIP-20: Token Standard: official website. — URL: https://eips.ethereum.org/EIPS/eip-20 (accessed: 18.04.2026).</li>
+        <li id="ref12">Hardhat Documentation: official website. — URL: https://hardhat.org/docs (accessed: 10.05.2026).</li>
+        <li id="ref13">GitHub: official website. — URL: https://github.com/ (accessed: 22.05.2026).</li>
+        <li id="ref14">Habr: official website. — URL: https://habr.com/ru/articles/ (accessed: 21.04.2026).</li>
+        <li id="ref15">Stack Overflow: official website. — URL: https://stackoverflow.com/ (accessed: 20.05.2026).</li>
+    </ol>
+
+</main>
+
+<footer class="site-footer">
+    <p>Personal website of a master's student at Kuban State University</p>
+    <p>Krasnodar, 2026–2027 academic year</p>
+</footer>
+
+</body>
+</html>

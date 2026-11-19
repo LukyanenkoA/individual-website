@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links — Hybrid method for smart contract security auditing</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <div class="brand">
+            <span class="name">Hybrid method for smart contract security auditing</span>
+            <span class="role">Annotated list of web resources</span>
+        </div>
+        <div class="lang-switch">
+            <a href="index.htm">RU</a>
+            <a href="indexe.htm" class="active">EN</a>
+        </div>
+    </div>
+</header>
+
+<nav class="main-nav">
+    <div class="nav-inner">
+        <a href="../indexe.htm">Biography</a>
+        <a href="../diss/indexe.htm">Abstract</a>
+        <a href="../library/indexe.htm">Library</a>
+        <a href="indexe.htm" class="active">Links</a>
+        <a href="zvite.htm">Search report</a>
+        <a href="../ind/indexe.htm">Individual section</a>
+        <a href="../eumk/indexe.htm">EUMC</a>
+    </div>
+</nav>
+
+<main class="main-container">
+
+    <h1>Links on the master's thesis topic</h1>
+
+    <p>
+        An annotated list of web resources on the topic
+        <strong>“Hybrid method for smart contract security auditing based on
+        static analysis and fuzzing with detection completeness evaluation”</strong>.
+        All links were checked and working at the time the site was published.
+    </p>
+
+    <!-- ======================= 1 ======================= -->
+    <h2>1. Scientific resources and publication databases</h2>
+    <ul class="links-list">
+        <li>
+            <span class="link-title"><a href="https://arxiv.org/" target="_blank">1. arXiv.org</a></span>
+            <span class="link-desc">The largest open preprint archive; the cs.CR section covers computer security and smart contract auditing papers.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://scholar.google.com/" target="_blank">2. Google Scholar</a></span>
+            <span class="link-desc">A search engine for scholarly publications on static analysis and smart contract fuzzing, citations, h-index.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://ieeexplore.ieee.org/" target="_blank">3. IEEE Xplore</a></span>
+            <span class="link-desc">IEEE digital library: key publications on blockchain systems security (ICSE, S&amp;P, ASE).</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://www.sciencedirect.com/" target="_blank">4. ScienceDirect</a></span>
+            <span class="link-desc">Elsevier's database: journals on computer security and software engineering.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://cyberleninka.ru/" target="_blank">5. CyberLeninka</a></span>
+            <span class="link-desc">Russian-language open-access scientific library: papers on smart contracts and blockchain.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://elibrary.ru/" target="_blank">6. eLibrary.ru</a></span>
+            <span class="link-desc">Russian Science Citation Index (RSCI).</span>
+        </li>
+    </ul>
+
+    <!-- ======================= 2 ======================= -->
+    <h2>2. Static analysis tools</h2>
+    <ul class="links-list">
+        <li>
+            <span class="link-title"><a href="https://github.com/crytic/slither" target="_blank">7. Slither (Trail of Bits)</a></span>
+            <span class="link-desc">A Solidity static analyzer: taint analysis, detection of 90+ vulnerability classes, compiler bug detector. The core tool of hybrid auditing.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://github.com/Consensys/mythril" target="_blank">8. Mythril (Consensys)</a></span>
+            <span class="link-desc">A symbolic execution analyzer of EVM bytecode: finds reentrancy, integer overflows, unprotected functions.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://github.com/enzymefinance/oyente" target="_blank">9. Oyente</a></span>
+            <span class="link-desc">The classic symbolic execution analyzer (2016): checks gasless send, reentrancy, transaction-ordering dependence.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://github.com/eth-sri/securify2" target="_blank">10. Securify v2 (ETH Zurich)</a></span>
+            <span class="link-desc">An analyzer built on a DSL for security facts about contract code; scales to large contracts.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://tool.smartdec.net/" target="_blank">11. SmartCheck (SmartDec)</a></span>
+            <span class="link-desc">A rule-based static analyzer (XML rules): syntactic and semantic vulnerabilities of Solidity contracts.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://github.com/protofire/solhint" target="_blank">12. Solhint</a></span>
+            <span class="link-desc">A Solidity linter: security rules (SWC), style recommendations; integrates into CI and IDEs.</span>
+        </li>
+    </ul>
+
+    <!-- ======================= 3 ======================= -->
+    <h2>3. Fuzzing and formal verification</h2>
+    <ul class="links-list">
+        <li>
+            <span class="link-title"><a href="https://github.com/crytic/echidna" target="_blank">13. Echidna (Trail of Bits)</a></span>
+            <span class="link-desc">A property-based fuzzer for the EVM: tests contract invariants with transaction sequences; the core of the fuzzing component.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://github.com/foundry-rs/foundry" target="_blank">14. Foundry (forge fuzz)</a></span>
+            <span class="link-desc">A Solidity development toolkit: built-in fuzzing mode of forge test, invariant tests, fast Solidity tests.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://github.com/trailofbits/medusa" target="_blank">15. Medusa (Trail of Bits)</a></span>
+            <span class="link-desc">A parallel fuzzer written in Go with interactive coverage exploration; suitable for EVM fuzzing strategy research.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://github.com/trailofbits/manticore" target="_blank">16. Manticore</a></span>
+            <span class="link-desc">A symbolic execution engine for the EVM and binaries: path exploration and proving properties of specific functions.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://www.certora.com/" target="_blank">17. Certora Prover</a></span>
+            <span class="link-desc">Formal verification of smart contracts: CVL specifications, proving that a contract satisfies formal rules.</span>
+        </li>
+    </ul>
+
+    <!-- ======================= 4 ======================= -->
+    <h2>4. Vulnerability classifications and best practices</h2>
+    <ul class="links-list">
+        <li>
+            <span class="link-title"><a href="https://swcregistry.io/" target="_blank">18. SWC Registry</a></span>
+            <span class="link-desc">The Smart Contract Weakness Classification registry (SWC-100…SWC-136): reentrancy, access control, arithmetic — the basis for detection completeness evaluation.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://consensys.github.io/smart-contract-best-practices/" target="_blank">19. ConsenSys: Smart Contract Best Practices</a></span>
+            <span class="link-desc">Recommendations for secure development: known attacks, defense patterns, audit checklists.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://docs.soliditylang.org/en/latest/security-considerations.html" target="_blank">20. Solidity: Security Considerations</a></span>
+            <span class="link-desc">The official Solidity documentation section on threats: reentrancy, front-running, gas limits on address transfers.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://dasp.co/" target="_blank">21. DASP Top 10</a></span>
+            <span class="link-desc">Top 10 decentralized application vulnerabilities; a historical classification of smart contract attacks.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://rekt.news/" target="_blank">22. Rekt News</a></span>
+            <span class="link-desc">Investigations of the largest DeFi hacks: causes, damage amounts, lessons for audit methodologies.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://github.com/crytic/not-so-smart-contracts" target="_blank">23. Not So Smart Contracts</a></span>
+            <span class="link-desc">A library of Solidity anti-patterns from Trail of Bits with examples of vulnerable code and fixes.</span>
+        </li>
+    </ul>
+
+    <!-- ======================= 5 ======================= -->
+    <h2>5. Practice platforms and training</h2>
+    <ul class="links-list">
+        <li>
+            <span class="link-title"><a href="https://ethernaut.openzeppelin.com/" target="_blank">24. Ethernaut (OpenZeppelin)</a></span>
+            <span class="link-desc">An interactive wargame: hacking training contracts to practice vulnerability hunting skills.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://www.damnvulnerabledefi.xyz/" target="_blank">25. Damn Vulnerable DeFi</a></span>
+            <span class="link-desc">A series of increasingly difficult DeFi security challenges: from simple bugs to combined attacks.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://secureum.substack.com/" target="_blank">26. Secureum</a></span>
+            <span class="link-desc">A smart contract security bootcamp and newsletter: vulnerability digests, tool reviews, quizzes.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://github.com/OpenZeppelin/openzeppelin-contracts" target="_blank">27. OpenZeppelin Contracts</a></span>
+            <span class="link-desc">The reference library of audited contracts (ERC-20/721, AccessControl, Pausable) — a model of secure implementations.</span>
+        </li>
+    </ul>
+
+    <!-- ======================= 6 ======================= -->
+    <h2>6. Datasets and methodological materials</h2>
+    <ul class="links-list">
+        <li>
+            <span class="link-title"><a href="https://github.com/smartbugs/smartbugs" target="_blank">28. SmartBugs</a></span>
+            <span class="link-desc">A framework for running analyzers on vulnerable contracts plus a dataset of several thousand annotated contracts.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://github.com/smartbugs/smartbugs-curated" target="_blank">29. SmartBugs-curated</a></span>
+            <span class="link-desc">A curated dataset of vulnerable contracts with precise SWC vulnerability annotation — the standard base for detection completeness evaluation.</span>
+        </li>
+        <li>
+            <span class="link-title"><a href="https://github.com/crytic/building-secure-contracts" target="_blank">30. Building Secure Contracts (Trail of Bits)</a></span>
+            <span class="link-desc">Methodological materials: guides to Echidna, Slither, invariants and hybrid auditing practices.</span>
+        </li>
+    </ul>
+
+</main>
+
+<footer class="site-footer">
+    <p>Personal website of a master's student at Kuban State University</p>
+    <p>Krasnodar, 2026–2027 academic year</p>
+</footer>
+
+</body>
+</html>
