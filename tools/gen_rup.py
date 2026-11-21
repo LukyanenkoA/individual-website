@@ -489,6 +489,28 @@ story.append(P("Упражнение 3.2. Добавьте middleware логир
 story.append(P("Упражнение 3.3. Напишите тесты обработчиков через httptest.NewRecorder и "
     "табличные тесты; добейтесь покрытия не менее 70% (go test -cover)."))
 
+story.append(P("Указания и ответы к упражнениям", "h2"))
+story.append(ul([
+    "<b>1.1.</b> go mod init lab1; аргументы — через flag.Parse(); каждая функция конвертера "
+    "возвращает (результат, error) и проверяет входные данные; табличный тест перебирает "
+    "случаи в цикле с t.Run.",
+    "<b>1.2.</b> Store — map[int]Product с sync.RWMutex; интерфейс Repository объединяет "
+    "методы Add/Get/Delete/List; ErrNotFound — sentinel-переменная, проверка errors.Is.",
+    "<b>1.3.</b> json.Unmarshal в []Product; агрегаты считаются по map[string]float64; "
+    "вывод таблицей через fmt.Printf(\"%-20s %10.2f\\n\", ...).",
+    "<b>2.1.</b> Реализация приведена ниже в примере выполнения упражнения.",
+    "<b>2.2.</b> Каждая стадия pipeline — горутина с select по ctx.Done() и входному каналу; "
+    "при отмене контекста все стадии завершаются, результаты собирает агрегатор.",
+    "<b>2.3.</b> Время выполнения падает почти линейно, пока N не превысит число ядер CPU, "
+    "затем ускорение практически прекращается — работает планировщик Go.",
+    "<b>3.1.</b> Обработчики регистрируются через mux.HandleFunc; идентификатор — "
+    "r.PathValue(\"id\"); POST возвращает 201, отсутствие товара — 404, неверный JSON — 400.",
+    "<b>3.2.</b> Middleware — функция вида func(http.Handler) http.Handler; код статуса "
+    "перехватывается обёрткой над http.ResponseWriter.",
+    "<b>3.3.</b> req := httptest.NewRequest(...), w := httptest.NewRecorder(); прямой вызов "
+    "обработчика и проверка w.Code / w.Body; порог — go test -cover ≥ 70%.",
+], "note"))
+
 story.append(P("Пример выполнения одного упражнения", "h2"))
 story.append(P("Упражнение 2.1", "note"))
 story.append(Paragraph(
@@ -605,6 +627,19 @@ SCALE = [
 ]
 t = Table([[Paragraph(c, ST["cellb"] if i == 0 else ST["cell"]) for c in row]
            for i, row in enumerate(SCALE)], colWidths=[W * 0.5, W * 0.5])
+t.setStyle(GRID)
+story.append(t)
+
+story.append(P("Ключи к тестовым заданиям", "note"))
+KEYS = [
+    ["Тест", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+    ["Ответ", "B", "B", "C", "B", "B", "A", "A", "B", "B", "C"],
+    ["Тест", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"],
+    ["Ответ", "B", "B", "C", "B", "A", "A", "B", "B", "A", "A"],
+]
+t = Table([[Paragraph(c, ST["cellb"] if i % 2 == 0 else ST["cell"]) for c in row]
+           for i, row in enumerate(KEYS)],
+          colWidths=[W * 0.12] + [W * 0.088] * 10)
 t.setStyle(GRID)
 story.append(t)
 story.append(PageBreak())
