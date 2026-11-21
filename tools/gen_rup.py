@@ -20,27 +20,31 @@ pdfmetrics.registerFont(TTFont("ArialI", os.path.join(FDIR, "ariali.ttf")))
 pdfmetrics.registerFont(TTFont("TNR", os.path.join(FDIR, "times.ttf")))
 pdfmetrics.registerFont(TTFont("TNRB", os.path.join(FDIR, "timesbd.ttf")))
 
-W = A4[0] - 4 * cm  # полезная ширина
+W = A4[0] - 4.5 * cm  # поля: слева 3 см, справа 1,5 см
+
+# ===== Форматирование по ГОСТ / образцу курсовой: Times New Roman 14, интервал 1,5,
+#       выравнивание по ширине, абзацный отступ 1,25 см =====
+INDENT = 1.25 * cm
 
 ST = {
-    "title": ParagraphStyle("t", fontName="ArialB", fontSize=14, leading=18, alignment=TA_CENTER, spaceAfter=8),
-    "sub":   ParagraphStyle("s", fontName="Arial", fontSize=12, leading=16, alignment=TA_CENTER, spaceAfter=6),
-    "center":ParagraphStyle("c", fontName="Arial", fontSize=11, leading=15, alignment=TA_CENTER, spaceAfter=4),
-    "h1":    ParagraphStyle("h1", fontName="ArialB", fontSize=12.5, leading=16, spaceBefore=16, spaceAfter=8),
-    "h2":    ParagraphStyle("h2", fontName="ArialB", fontSize=11.5, leading=15, spaceBefore=12, spaceAfter=6),
-    "p":     ParagraphStyle("p", fontName="Arial", fontSize=11, leading=15.5, alignment=TA_JUSTIFY, spaceAfter=6),
-    "pc":    ParagraphStyle("pc", fontName="Arial", fontSize=11, leading=15.5, alignment=TA_CENTER, spaceAfter=6),
-    "li":    ParagraphStyle("li", fontName="Arial", fontSize=11, leading=15, alignment=TA_JUSTIFY, spaceAfter=3),
-    "code":  ParagraphStyle("code", fontName="Courier", fontSize=9, leading=11.5, spaceAfter=6),
-    "note":  ParagraphStyle("n", fontName="Arial", fontSize=9.5, leading=13, spaceAfter=8),
-    "cell":  ParagraphStyle("cell", fontName="Arial", fontSize=9.5, leading=12.5),
-    "cellb": ParagraphStyle("cellb", fontName="ArialB", fontSize=9.5, leading=12.5),
+    "title": ParagraphStyle("t", fontName="TNRB", fontSize=14, leading=21, alignment=TA_CENTER, spaceAfter=8),
+    "sub":   ParagraphStyle("s", fontName="TNR", fontSize=14, leading=21, alignment=TA_CENTER, spaceAfter=6),
+    "center":ParagraphStyle("c", fontName="TNR", fontSize=14, leading=21, alignment=TA_CENTER, spaceAfter=4),
+    "h1":    ParagraphStyle("h1", fontName="TNRB", fontSize=14, leading=21, alignment=TA_CENTER, spaceBefore=14, spaceAfter=8),
+    "h2":    ParagraphStyle("h2", fontName="TNRB", fontSize=14, leading=21, alignment=TA_JUSTIFY, spaceBefore=12, spaceAfter=6),
+    "p":     ParagraphStyle("p", fontName="TNR", fontSize=14, leading=21, alignment=TA_JUSTIFY, firstLineIndent=INDENT, spaceAfter=0),
+    "pc":    ParagraphStyle("pc", fontName="TNR", fontSize=14, leading=21, alignment=TA_CENTER, spaceAfter=6),
+    "li":    ParagraphStyle("li", fontName="TNR", fontSize=14, leading=21, alignment=TA_JUSTIFY, spaceAfter=0),
+    "code":  ParagraphStyle("code", fontName="Courier", fontSize=11, leading=14, spaceAfter=6),
+    "note":  ParagraphStyle("n", fontName="TNR", fontSize=12, leading=16.5, alignment=TA_JUSTIFY, spaceAfter=6),
+    "cell":  ParagraphStyle("cell", fontName="TNR", fontSize=12, leading=15),
+    "cellb": ParagraphStyle("cellb", fontName="TNRB", fontSize=12, leading=15),
 }
 
 def P(t, s="p"): return Paragraph(t, ST[s])
 def ul(items, s="li"):
-    return ListFlowable([ListItem(Paragraph(i, ST[s]), leftIndent=16) for i in items],
-                        bulletType="bullet", start="–", bulletFontSize=9)
+    return ListFlowable([ListItem(Paragraph(i, ST[s]), leftIndent=INDENT) for i in items],
+                        bulletType="bullet", start="–", bulletFontSize=11)
 
 GRID = TableStyle([
     ("GRID", (0, 0), (-1, -1), 0.5, "#666666"),
@@ -203,6 +207,7 @@ for title, ind, res in COMPETS:
     rows.append([Paragraph(first, ST["cellb"]), Paragraph(ind, ST["cell"]),
                  Paragraph(res, ST["cell"])])
 t = Table(rows, colWidths=[W * 0.30, W * 0.26, W * 0.44], repeatRows=0)
+# (шапки у этой таблицы нет — первая строка это компетенция, а не заголовок)
 t.setStyle(GRID)
 story.append(t)
 story.append(P("Результаты обучения по дисциплине достигаются в рамках осуществления всех видов "
@@ -974,8 +979,14 @@ t = Table([[Paragraph(c, ST["cellb"] if i == 0 else ST["cell"]) for c in row]
 t.setStyle(GRID)
 story.append(t)
 
-doc = SimpleDocTemplate(OUT, pagesize=A4, leftMargin=2 * cm, rightMargin=2 * cm,
-                        topMargin=1.8 * cm, bottomMargin=1.8 * cm,
+doc = SimpleDocTemplate(OUT, pagesize=A4, leftMargin=3 * cm, rightMargin=1.5 * cm,
+                        topMargin=2 * cm, bottomMargin=2 * cm,
                         title="Рабочая программа дисциплины «Golang-разработка»")
-doc.build(story)
+
+def page_number(canvas, doc_):
+    """Номер страницы внизу по центру, Times New Roman 12."""
+    canvas.setFont("TNR", 12)
+    canvas.drawCentredString(A4[0] / 2, 1.1 * cm, str(canvas.getPageNumber()))
+
+doc.build(story, onFirstPage=page_number, onLaterPages=page_number)
 print("RUP OK:", OUT)
